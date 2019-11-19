@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: redis-application
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.198.144:3306/tb_gis?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: bester
+    password: user2018
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1 #最小连接池数量
+    maxActive: 50 #最大连接池数量
+    poolPreparedStatements: false #是否缓存preparedStatement，也就是PSCache，对支持游戏的数据库提升大，mysql建议关闭
+    maxOpenPreparedStatements: -1 #要启用PSCache，配置必须大于0
+    validationQuery: SELECT 'x' #用来检测连接是否有效的sql，要求是一个查询语句
+    testWhileIdle: true #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+    testOnBorrow: false #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+    testOnReturn: false #申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效(建议配置为true，不影响性能，并且保证安全性)
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8 #最大连接
+        max-wait: -1 #最大等待
+        max-idle: 8 #最大空闲
+        min-idle: 0 #最小等待
+    timeout: 5000 # 链接超时
+    database: 0
